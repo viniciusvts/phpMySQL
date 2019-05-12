@@ -1,9 +1,11 @@
-version: '3'
+version: '3.1'
+networks:
+  intraphp:
 
 services:
   mysqldb:
     image: mysql:latest
-    container_name: mysqlapp
+    container_name: mysqlphpapp
     volumes:
       - ./datadir:/var/lib/mysql
     command: --default-authentication-plugin=mysql_native_password
@@ -13,7 +15,16 @@ services:
       MYSQL_USER: stark
       MYSQL_PASSWORD: iAmIronMan
     ports:
-      - "3306:3306"
+      - "3306"
+    networks: 
+      intraphp:
+        aliases:
+          - mysqlphpapp
+    deploy:
+      restart_policy:
+        condition: always
+        delay: 10s
+
   phpweb:
     build:
       dockerfile: php.dockerfile
@@ -24,8 +35,14 @@ services:
     volumes:
       - ./php/:/var/www/html/
     ports:
-      - "8080:80"
+      - "80:80"
     links:
       - mysqldb
     stdin_open: true
     tty: true
+    networks: 
+      - intraphp
+    deploy:
+      restart_policy:
+        condition: always
+        delay: 10s
