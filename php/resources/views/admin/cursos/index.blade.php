@@ -13,30 +13,32 @@
                 <th>Publicado</th>
                 <th>Ação</th>
             </tr>
-            <tr>
             @foreach($registros as $registro)
+              <tr>
                 <td>{{ $registro->id}}</td>
                 <td>{{ $registro->titulo}}</td>
-                <td>{{ $registro->descrição}}</td>
+                <td>{{ $registro->descricao}}</td>
                 <td>
-                    <img width="120px" 
-                        src="{{ asset($registro->imagem) }}" 
+                  <a href="{{ asset($registro->imagem) }}">
+                    <img height="50px"
+                        src="{{ asset($registro->imagem) }}"
                         alt=" {{$registro->imagem}}"/>
+                  </a>
                 </td>
                 <td>{{ $registro->valor}}</td>
                 <td>{{ $registro->publicado }}</td>
                 <td>
-                    <a class="btn deep-orange" 
-                        href="{{ route('admin.cursos.editar'),$registro->id }}">
+                    <a class="btn deep-orange"
+                        href="{{ route('admin.cursos.editar',$registro->id) }}">
                             Editar
                     </a>
-                    <a class="btn deep-red" 
-                    href="{{ route('admin.cursos.deletar'),$registro->id }}">
+                    <a class="btn deep-red"
+                    href="{{ route('admin.cursos.deletar',$registro->id) }}">
                         Deletar
                     </a>
                 </td>
-            @endforeach
-            </tr>
+              </tr
+            @endforeach>
         </table>
     </div>
     <div class="row">
