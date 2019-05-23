@@ -1,5 +1,4 @@
 datadir/
 myAdmin/
 php/public/img
-nginx/cert.key
-nginx/cert.crt
+nginx/
