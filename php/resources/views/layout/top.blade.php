@@ -12,15 +12,31 @@
 <body>
     <nav>
         <div class="nav-wrapper">
-            <a href="#!" class="brand-logo">Laravel</a>
-            <a href="#" data-target="mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <a href="{{ route('home') }}" class="brand-logo">CRUD</a>
+            <a href="#" data-target="mobile" class="sidenav-trigger">
+                <i class="material-icons">menu</i>
+            </a>
             <ul class="right hide-on-med-and-down">
-                <li><a href="/">Home</a></li>
+                <li><a href="{{ route('home') }}">Home</a></li>
+                <!-- se não tem user autenticado-->
+                @if(Auth::guest())
+                <li><a href="{{ route('login') }}">Login</a></li>
+                @else
                 <li><a href="{{route('admin.cursos')}}">Cursos</a></li>
+                <li><a href="{{route('login.sair')}}">Sair</a></li>
+                <li><a href="#">User: {{Auth::user()->name}}</a></li>
+                @endif
             </ul>
             <ul class="sidenav" id="mobile">
                 <li><a href="/">Home</a></li>
+                <!--aqui eu repito o menu anterior-->
+                @if(Auth::guest())
+                <li><a href="{{ route('login') }}">Login</a></li>
+                @else
                 <li><a href="{{route('admin.cursos')}}">Cursos</a></li>
+                <li><a href="{{route('login.sair')}}">Sair</a></li>
+                <li><a href="#">User: {{Auth::user()->name}}</a></li>
+                @endif
             </ul>
         </div>
     </nav>

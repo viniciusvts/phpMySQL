@@ -29,8 +29,8 @@
                 <td>{{ $registro->publicado }}</td>
                 <td>
                     <a class="btn deep-orange"
-                        href="{{ route('admin.cursos.editar',$registro->id) }}">
-                            Editar
+                    href="{{ route('admin.cursos.editar',$registro->id) }}">
+                        Editar
                     </a>
                     <a class="btn deep-red"
                     href="{{ route('admin.cursos.deletar',$registro->id) }}">

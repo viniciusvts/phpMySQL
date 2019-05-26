@@ -22,10 +22,20 @@ Route::post('/login/entrar',
 Route::get('/login/sair',
   ['as'=>'login.sair', 'uses'=>'SiteLoginController@sair'])  ;
 
+
+//rotas que só serão acessiveis a usuários autenticados
+Route::group(['middleware'=>'auth'], function(){
 //cursos
-Route::get('admin/cursos', ['as'=>'admin.cursos', 'uses'=>'CursoController@index']);
-Route::get('admin/cursos/adicionar', ['as'=>'admin.cursos.adicionar', 'uses'=>'CursoController@adicionar']);
-Route::post('admin/cursos/salvar', ['as'=>'admin.cursos.salvar', 'uses'=>'CursoController@salvar']);
-Route::get('admin/cursos/editar{id}', ['as'=>'admin.cursos.editar', 'uses'=>'CursoController@editar']);
-Route::put('admin/cursos/atualizar{id}', ['as'=>'admin.cursos.atualizar', 'uses'=>'CursoController@atualizar']);
-Route::put('admin/cursos/deletar{id}', ['as'=>'admin.cursos.deletar', 'uses'=>'CursoController@deletar']);
+  Route::get('admin/cursos',
+    ['as'=>'admin.cursos', 'uses'=>'CursoController@index']);
+  Route::get('admin/cursos/adicionar',
+    ['as'=>'admin.cursos.adicionar', 'uses'=>'CursoController@adicionar']);
+  Route::post('admin/cursos/salvar',
+    ['as'=>'admin.cursos.salvar', 'uses'=>'CursoController@salvar']);
+  Route::get('admin/cursos/editar{id}',
+    ['as'=>'admin.cursos.editar', 'uses'=>'CursoController@editar']);
+  Route::put('admin/cursos/atualizar{id}',
+    ['as'=>'admin.cursos.atualizar', 'uses'=>'CursoController@atualizar']);
+  Route::get('admin/cursos/deletar{id}',
+    ['as'=>'admin.cursos.deletar', 'uses'=>'CursoController@deletar']);
+});
