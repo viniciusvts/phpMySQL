@@ -10,6 +10,9 @@
 | to using a Closure or controller method. Build something great!
 |
 */
+// a rota direciona para o controller
+Route::get('/',
+  ['as'=>'home', 'uses'=>'SiteHomeController@index']);
 
 Route::get('/', function () {
     return view('welcome');
