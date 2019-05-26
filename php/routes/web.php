@@ -14,12 +14,13 @@
 Route::get('/',
   ['as'=>'home', 'uses'=>'SiteHomeController@index']);
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/contato', ['uses'=>'ContatoController@index']);// a rota direciona para o controller
-Route::post('/contato', ['uses'=>'ContatoController@criar']);
-Route::put('/contato', ['uses'=>'ContatoController@editar']);
+//login
+Route::get('/login',
+  ['as'=>'login', 'uses'=>'SiteLoginController@index'])  ;
+Route::post('/login/entrar',
+  ['as'=>'login.entrar', 'uses'=>'SiteLoginController@entrar'])  ;
+Route::get('/login/sair',
+  ['as'=>'login.sair', 'uses'=>'SiteLoginController@sair'])  ;
 
 //cursos
 Route::get('admin/cursos', ['as'=>'admin.cursos', 'uses'=>'CursoController@index']);
