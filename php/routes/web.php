@@ -22,10 +22,17 @@ Route::post('/login/entrar',
 Route::get('/login/sair',
   ['as'=>'login.sair', 'uses'=>'SiteLoginController@sair'])  ;
 
+//contato
+Route::get('/contato',
+  ['as'=>'contato', 'uses'=>'ContatoController@index']);
+Route::post('/contato',
+  ['as'=>'contato.criar', 'uses'=>'ContatoController@criar']);
+Route::put('/contato',
+  ['as'=>'contato.editar', 'uses'=>'ContatoController@editar']);
 
 //rotas que só serão acessiveis a usuários autenticados
 Route::group(['middleware'=>'auth'], function(){
-//cursos
+  //cursos
   Route::get('admin/cursos',
     ['as'=>'admin.cursos', 'uses'=>'CursoController@index']);
   Route::get('admin/cursos/adicionar',
